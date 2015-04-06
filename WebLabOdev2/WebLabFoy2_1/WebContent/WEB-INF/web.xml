@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+  <!-- Access the SensitiveServlet at
+       http://localhost/webappName/sensitive/info1 -->
+  <servlet>
+    <servlet-name>SensitiveServlet</servlet-name>
+    <servlet-class>coreservlets.SensitiveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SensitiveServlet</servlet-name>
+    <url-pattern>/sensitive/info1</url-pattern>
+  </servlet-mapping> 
+
+  <!-- Protect everything within the "sensitive" directory. -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Sensitive</web-resource-name>
+      <url-pattern>/sensitive/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>registered-user</role-name>
+      <role-name>administrator</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- All security roles that will be used
+       anywhere within this app. -->
+  <!-- All security roles that will be used
+       anywhere within this app. -->
+  <security-role>
+    <role-name>registered-user</role-name>
+  </security-role>
+  <security-role>
+    <role-name>administrator</role-name>
+  </security-role>
+  <!-- Tell the server to use BASIC authentication. -->
+  <login-config><auth-method>BASIC</auth-method><realm-name>Very Sensitive Application</realm-name></login-config>
+  
+  <!-- Disable the invoker servlet. -->
+  <servlet>
+    <servlet-name>NoInvoker</servlet-name>
+    <servlet-class>coreservlets.NoInvokerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NoInvoker</servlet-name>
+    <url-pattern>/servlet/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- Access the ColorfulPage servlet at
+       http://localhost/webappName/sensitive/colorfulPage -->
+  <servlet>
+    <servlet-name>ColorDisplayServlet</servlet-name>
+    <servlet-class>coreservlets.ColorfulPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ColorDisplayServlet</servlet-name>
+    <url-pattern>/sensitive/colorfulPage</url-pattern>
+  </servlet-mapping> 
+  
+  <!-- If URL gives a directory but no filename, try index.jsp
+       first and index.html second. If neither is found,
+       the result is server-specific (e.g., a directory 
+       listing).  
+  -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
