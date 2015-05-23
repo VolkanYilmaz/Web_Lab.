@@ -5,7 +5,7 @@
     <title>Kayıt Eklendi</title>
 </head>
 <body>
-
+<center>
 <h2>Kayıt Eklendi</h2>
    <table>
     <tr>
@@ -20,6 +20,7 @@
         <td>ID</td>
         <td>${id}</td>
     </tr>
-</table>  
+</table>
+</center>  
 </body>
 </html>

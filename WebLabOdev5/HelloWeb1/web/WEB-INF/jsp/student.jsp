@@ -5,7 +5,7 @@
     <title>Öğrenci Ekleme</title>
 </head>
 <body>
-
+<center>
 <h2>Öğrenci Ekleme</h2>
 <form:form method="POST" action="/HelloWeb1/addStudent">
    <table>
@@ -28,5 +28,6 @@
     </tr>
 </table>  
 </form:form>
+</center>
 </body>
 </html>
